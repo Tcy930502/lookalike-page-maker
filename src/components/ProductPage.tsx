@@ -17,7 +17,7 @@ const ProductPage = () => {
     '/placeholder.svg'
   ];
 
-  const tabs = ['商品介紹', '成分與營養標示', '顧客評論', '常見問答', '你可能會喜歡'];
+  const tabs = ['商品介紹', '成分與營養標示', '顧客評論'];
 
   const nextImage = () => {
     setCurrentImage((prev) => (prev + 1) % productImages.length);
@@ -110,30 +110,10 @@ const ProductPage = () => {
               <div className="flex items-baseline space-x-3">
                 <span className="text-3xl font-bold text-gray-900">$999</span>
                 <span className="text-lg text-gray-500 line-through">$1299</span>
-                <Badge className="bg-red-500 text-white text-xs px-2 py-1">現時特價</Badge>
               </div>
             </div>
 
-            {/* AI Recommendation */}
-            <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                <span className="text-sm font-medium text-blue-800">AI 適配度：與你的健康評估特徵符合 92%</span>
-              </div>
-            </div>
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                <span className="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded-full">腸胃補助</span>
-              </div>
-              <div className="flex items-center space-x-1">
-                <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
-                <span className="text-sm bg-blue-100 text-blue-700 px-3 py-1 rounded-full">身強免疫力</span>
-              </div>
-              <span className="text-sm bg-gray-100 text-gray-700 px-3 py-1 rounded-full">腸道健康</span>
-            </div>
 
             {/* Usage Instructions */}
             <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
@@ -155,11 +135,6 @@ const ProductPage = () => {
               </div>
             </div>
 
-            {/* Stock Status */}
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="text-green-600 font-medium text-sm">現貨供應</span>
-            </div>
 
             {/* Quantity Selector */}
             <div className="space-y-4">
