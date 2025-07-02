@@ -9,6 +9,7 @@ const ProductPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [isLiked, setIsLiked] = useState(false);
   const [activeTab, setActiveTab] = useState('商品介紹');
+  const reviewsRef = React.useRef<HTMLDivElement>(null);
 
   const productImages = [
     '/placeholder.svg',
@@ -25,6 +26,13 @@ const ProductPage = () => {
 
   const prevImage = () => {
     setCurrentImage((prev) => (prev - 1 + productImages.length) % productImages.length);
+  };
+
+  const scrollToReviews = () => {
+    setActiveTab('顧客評論');
+    setTimeout(() => {
+      reviewsRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   return (
@@ -92,16 +100,20 @@ const ProductPage = () => {
               <h1 className="text-2xl font-bold text-gray-900 mb-3">威德 益生菌膠囊</h1>
               <div className="flex items-center space-x-4 mb-4">
                 <div className="flex items-center space-x-1">
-                  <span className="text-yellow-500 text-sm font-medium">威德</span>
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
+                  <div className="flex cursor-pointer" onClick={scrollToReviews}>
+                    {[...Array(4)].map((_, i) => (
                       <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
+                    <div className="relative">
+                      <Star className="w-4 h-4 text-gray-300" />
+                      <div className="absolute inset-0 overflow-hidden" style={{width: '70%'}}>
+                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                      </div>
+                    </div>
                   </div>
                   <span className="text-sm text-gray-600 font-medium">4.7</span>
                 </div>
-                <span className="text-sm text-gray-500">125 則評論</span>
-                <Badge className="bg-red-100 text-red-700 text-xs px-2 py-1">限時特惠</Badge>
+                <span className="text-sm text-gray-500 cursor-pointer hover:text-gray-700" onClick={scrollToReviews}>125 則評論</span>
               </div>
             </div>
 
@@ -361,7 +373,7 @@ const ProductPage = () => {
               )}
 
               {activeTab === '顧客評論' && (
-                <>
+                <div ref={reviewsRef}>
                   {/* Reviews Summary */}
                   <div>
                     <h3 className="text-xl font-bold mb-4">顧客評論</h3>
@@ -462,7 +474,7 @@ const ProductPage = () => {
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               )}
             </div>
           </div>
